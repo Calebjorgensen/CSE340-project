@@ -1,6 +1,156 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background: url('/images/site/checkerboard.jpg') repeat;
+  color: #333;
+}
+
+/* Wrapper */
+#wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+/* Header */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+}
+
+.siteName a {
+  font-size: 2rem;
+  text-decoration: none;
+  color: #333;
+}
+
+#tools a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 10px;
+  list-style: none;
+}
+
+nav ul li {
+  color: white;
+  cursor: pointer;
+}
+
+/* Highlight Section */
+#highlight {
+  text-align: center;
+  background-color: #f0f8ff;
+  border: 2px solid #00bfff;
+  padding: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+
+#highlight h2 {
+  color: #00bfff;
+  font-size: 1.8rem;
+}
+
+#highlight ul {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+#highlight button {
+  background-color: #00bfff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+#highlight img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* Upgrades and Reviews Section */
+#sections {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#upgrades, #reviews {
+  width: 48%;
+}
+
+#upgrades h2, #reviews h2 {
+  margin-bottom: 10px;
+}
+
+.upgrade-item {
+  display: inline-block;
+  text-align: center;
+  margin: 10px;
+  width: 45%;
+}
+
+.upgrade-item img {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: #e0f7ff;
+}
+
+.upgrade-item p {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+#reviews ul {
+  list-style: none;
+  padding: 0;
+}
+
+#reviews li {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f0f8ff;
+  margin-top: 20px;
+  font-size: 0.8rem;
+}
+
+/* Background Checkerboard */
+body {
+  background-image: url('/images/site/checkerboard.jpg');
+  background-size: 50px 50px;
+  background-repeat: repeat;
+}
+
+

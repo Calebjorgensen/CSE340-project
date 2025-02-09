@@ -59,6 +59,37 @@ Util.buildClassificationGrid = async function(data){
 
 
 
+// Build the vehicle detail view HTML
+Util.buildVehicleDetailHTML = function (vehicle) {
+  // Format price and mileage with commas
+  const formattedPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(vehicle.inv_price);
+
+  const formattedMileage = new Intl.NumberFormat('en-US').format(vehicle.inv_mileage);
+
+  // Build the HTML string for the vehicle detail view
+  let html = `
+    <div class="vehicle-detail">
+      <div class="vehicle-image">
+        <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}" />
+      </div>
+      <div class="vehicle-info">
+        <h1>${vehicle.inv_make} ${vehicle.inv_model} (${vehicle.inv_year})</h1>
+        <p><strong>Price:</strong> ${formattedPrice}</p>
+        <p><strong>Mileage:</strong> ${formattedMileage} miles</p>
+        <p><strong>Year:</strong> ${vehicle.inv_year}</p>
+        <p><strong>Description:</strong> ${vehicle.inv_description}</p>
+      </div>
+    </div>
+  `;
+
+  return html;
+};
+
+
+
 
 
 module.exports = Util

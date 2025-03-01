@@ -90,6 +90,21 @@ Util.buildVehicleDetailHTML = function (vehicle) {
 
 
 
+/* **************************************
+ * Handle Errors Middleware Function
+ ************************************** */
+Util.handleErrors = (fn) => {
+  return async (req, res, next) => {
+      try {
+          await fn(req, res, next);
+      } catch (err) {
+          console.error("Error in handleErrors middleware:", err);
+          next(err);
+      }
+  };
+};
+
+
 
 
 module.exports = Util

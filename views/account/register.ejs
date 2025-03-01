@@ -1,0 +1,29 @@
+<%- include('../partials/header.ejs') %>
+
+<main id="register-container">
+  <h1>Register</h1>
+
+  <% if (locals.errorMessage) { %>
+    <p class="error"><%= errorMessage %></p>
+  <% } %>
+
+  <form action="/account/register" method="post">
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" name="firstname" required />
+
+    <label for="lastname">Last Name:</label>
+    <input type="text" id="lastname" name="lastname" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p>Already have an account? <a href="/account/login">Login here</a></p>
+</main>
+
+<%- include('../partials/footer.ejs') %>

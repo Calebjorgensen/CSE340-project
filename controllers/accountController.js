@@ -9,7 +9,7 @@ async function buildLogin(req, res, next) {
     res.render("account/login", {
       title: "Login",
       nav,
-      errorMessage: null,
+      errors: null,
     })
   }
 
@@ -33,12 +33,24 @@ async function registerAccount(req, res) {
   let nav = await utilities.getNav()
   const { account_firstname, account_lastname, account_email, account_password } = req.body
 
+
+  console.log("Received registration data:", {
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_password
+  }); // Check if form data is being received
+
+
   const regResult = await accountModel.registerAccount(
     account_firstname,
     account_lastname,
     account_email,
     account_password
   )
+
+
+  console.log("Database insert result:", regResult); // Check what the model returns
 
   if (regResult) {
     req.flash(

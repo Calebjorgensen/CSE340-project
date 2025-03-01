@@ -7,18 +7,19 @@
     <p class="error"><%= errorMessage %></p>
   <% } %>
 
+
   <form action="/account/register" method="post">
     <label for="firstname">First Name:</label>
-    <input type="text" id="firstname" name="firstname" required />
+    <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
 
     <label for="lastname">Last Name:</label>
-    <input type="text" id="lastname" name="lastname" required />
+    <input type="text" id="lastname" name="account_lastname" required />
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
+    <input type="email" id="email" name="account_email" required />
 
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required />
+    <input type="password" id="password" name="account_password" required />
 
     <button type="submit">Register</button>
   </form>

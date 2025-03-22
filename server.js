@@ -16,6 +16,8 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const utilities = require("./utilities")
 
 
 /* ***********************
@@ -31,6 +33,9 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 
 // Express Messages Middleware

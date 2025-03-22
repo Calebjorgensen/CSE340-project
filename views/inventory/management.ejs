@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<main>
+    <h1>Inventory Management</h1>
+
+    <ul>
+        <li><a href="/inventory/add-classification">Add New Classification</a></li>
+        <li><a href="/inventory/add-vehicle">Add New Vehicle</a></li>
+    </ul>
+
+    <h2>Manage Inventory</h2>
+    <p>Select a classification from the list to see the items belonging to that classification.</p>
+
+    <!-- Display the classification select list -->
+    <%= classificationSelect %>
+
+    <!-- Empty table to display inventory data -->
+    <table id="inventoryDisplay"></table>
+
+    <!-- Message for users with JavaScript disabled -->
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+</main>
+
+<%- include('../partials/footer') %>
+<script src="/js/inventory.js"></script>
+<script src="../../js/inventory.js"></script>

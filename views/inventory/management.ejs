@@ -2,6 +2,12 @@
 <%- include('../partials/nav') %>
 
 <main>
+    <% if (messages && messages.error) { %>
+        <div class="error"><%= messages.error %></div>
+    <% } %>
+    <% if (messages && messages.success) { %>
+        <div class="success"><%= messages.success %></div>
+    <% } %>
     <h1>Inventory Management</h1>
 
     <ul>
@@ -24,4 +30,4 @@
 
 <%- include('../partials/footer') %>
 <script src="/js/inventory.js"></script>
-<script src="../../js/inventory.js"></script>
+

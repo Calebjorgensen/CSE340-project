@@ -51,6 +51,17 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 
 
 
+//Centralized error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).render("error", {
+    title: "Error",
+    message: err.message || "Something went wrong",
+    status: err.status || 500,
+  });
+});
+
+
 
 /* ***********************
  * View Engine and Templates

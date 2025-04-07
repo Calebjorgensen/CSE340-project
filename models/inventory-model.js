@@ -21,26 +21,37 @@ async function getInventoryByClassificationId(classification_id) {
     )
     return data.rows
   } catch (error) {
-    console.error("getclassificationsbyid error " + error)
+    console.error("getInventoryByClassificationId error " + error)
+    throw error
   }
 }
 
-
-//Getr inventory item by inv_id
+/* ***************************
+ *  Get vehicle details by ID
+ * ************************** */
 async function getInventoryById(inv_id) {
   try {
-    const data = await pool.query(
-      `SELECT * FROM public.inventory WHERE inv_id = $1`,
-      [inv_id]
-    );
-    return data.rows[0];
+      const sql = "SELECT * FROM inventory WHERE inv_id = $1";
+      const result = await pool.query(sql, [inv_id]);
+      return result.rows[0]; 
   } catch (error) {
-    console.error("getInventoryById error:" + error);
-    throw error;
+      console.error("Error fetching vehicle details:", error);
+      throw new Error("Database error retrieving vehicle details.");
   }
 }
 
+/* ***************************
+ *  Insert a new classification
+ * ************************** */
+async function insertClassification(classification_name) {
+  try {
+    const query = "INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *";
+    const result = await pool.query(query, [classification_name]);
+    return result.rows[0]; // Return inserted classification
+  } catch (error) {
+    console.error("Error inserting classification:", error);
+    throw new Error("Database error inserting classification.");
+  }
+}
 
-
-
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryById};
+module.exports = { getClassifications, getInventoryByClassificationId, getInventoryById,insertClassification, };

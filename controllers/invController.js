@@ -22,13 +22,10 @@ invCont.buildByClassificationId = async function (req, res, next) {
 
 invCont.buildByInventoryId = async function (req, res, next) {
   const inv_id = req.params.invId;
-
   try {
     //Get the vehicle data by inv_id
     const vehicle = await invModel.getInventoryById(inv_id);
     const nav = await utilities.getNav();
-
-    //Create the HTML for the vehicle details using utility fucntion
     const vehicleDetailsHTML = utilities.buildVehicleDetailHTML(vehicle);
 
     res.render("./inventory/detail", {
@@ -103,8 +100,58 @@ invCont.editInventoryView = async function (req, res, next) {
 }
 
 
+exports.showManagementView = (req, res) => {
+  res.render("inventory/management", { messages: req.flash() });
+};
 
 
+exports.showAddClassification = (req, res) => {
+  res.render("inventory/add-classification", { messages: req.flash() });
+};
+
+exports.addClassification = async (req, res) => {
+  const { classification_name } = req.body;
+  const validationRegex = /^[a-zA-Z0-9]+$/;
+  
+  if (!validationRegex.test(classification_name)) {
+      req.flash("error", "Invalid classification name.");
+      return res.redirect("/inv/add-classification");
+  }
+
+  try {
+      await invModel.insertClassification(classification_name);
+      req.flash("success", "Classification added successfully!");
+      return res.redirect("/inv/");
+  } catch (error) {
+      req.flash("error", "Error adding classification.");
+      return res.redirect("/inv/add-classification");
+  }
+};
+
+
+
+
+
+/* ***************************
+ *  Process New Classification Form
+ * ************************** */
+invCont.addClassification = async function (req, res) {
+  const { classification_name } = req.body;
+
+  if (!/^[a-zA-Z0-9_-]+$/.test(classification_name)) {
+    req.flash("error", "Classification name must not contain spaces or special characters.");
+    return res.redirect("/inventory/add-classification");
+  }
+
+  try {
+    await invModel.insertClassification(classification_name);
+    req.flash("success", "Classification added successfully.");
+    res.redirect("/inventory/management");
+  } catch (error) {
+    req.flash("error", "Error adding classification.");
+    res.redirect("/inventory/add-classification");
+  }
+};
 
 
 

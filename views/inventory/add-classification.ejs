@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navigation') %>
+
+<main>
+    <h1>Add Classification</h1>
+
+    <% if (messages.error) { %>
+      <div class="error"><%= messages.error %></div>
+    <% } %>
+    <% if (messages.success) { %>
+      <div class="success"><%= messages.success %></div>
+    <% } %>
+
+    <form id="classificationForm" action="../inventory/add-classification.ejs" method="POST">
+      <label for="classification_name">Classification Name:</label>
+      <input type="text" id="classification_name" name="classification_name" required pattern="^[a-zA-Z0-9]+$" title="No spaces or special characters allowed">
+      <button type="submit" style="display: block; background: red; color: white; font-size: 20px; border: 2px solid black;">Add</button>
+
+    </form>
+</main>
+
+<%- include('../partials/footer') %>

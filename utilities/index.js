@@ -7,24 +7,45 @@ require("dotenv").config()
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
-  let data = await invModel.getClassifications()
-  let list = "<ul>"
-  list += '<li><a href="/" title="Home page">Home</a></li>'
-  data.rows.forEach((row) => {
-    list += "<li>"
-    list +=
-      '<a href="/inv/type/' +
-      row.classification_id +
-      '" title="See our inventory of ' +
-      row.classification_name +
-      ' vehicles">' +
-      row.classification_name +
-      "</a>"
-    list += "</li>"
-  })
-  list += "</ul>"
-  return list
-}
+  try {
+    // Fetch classifications data from the model
+    let data = await invModel.getClassifications();
+
+    // Log the data to ensure it's being returned properly
+    console.log("Classifications Data:", data);
+
+    // Check if data is an array and contains elements
+    if (!data || !Array.isArray(data) || data.length === 0) {
+      throw new Error("No classifications available");
+    }
+
+    // Construct the navigation HTML list
+    let list = "<ul>";
+    list += '<li><a href="/" title="Home page">Home</a></li>';
+
+    // Loop through the classifications and add them to the nav
+    data.forEach((row) => {
+      list += "<li>";
+      list +=
+        '<a href="/inv/type/' +
+        row.classification_id +
+        '" title="See our inventory of ' +
+        row.classification_name +
+        ' vehicles">' +
+        row.classification_name +
+        "</a>";
+      list += "</li>";
+    });
+
+    list += "</ul>";
+
+    return list;
+  } catch (error) {
+    // Log the error and pass it to the next middleware
+    console.error("Error in getNav:", error);
+    next(error); // Pass error to error-handling middleware
+  }
+};
 
 /* **************************************
 * Build the classification view HTML

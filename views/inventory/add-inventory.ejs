@@ -39,13 +39,9 @@
     <label for="inv_description">Description:</label>
     <textarea id="inv_description" name="inv_description" required></textarea>
 
-    <!-- Image Path -->
-    <label for="inv_image">Image Path:</label>
-    <input type="text" id="inv_image" name="inv_image" value="/images/no-image.jpg" required> <!-- Default image path -->
-
-    <!-- Thumbnail Path -->
-    <label for="inv_thumbnail">Thumbnail Path:</label>
-    <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="/images/no-thumbnail.jpg" required> <!-- Default thumbnail path -->
+    <!-- Hidden fields for image and thumbnail paths -->
+    <input type="hidden" name="inv_image" value="/images/no-image.jpg">
+    <input type="hidden" name="inv_thumbnail" value="/images/no-thumbnail.jpg">
 
     <!-- Price -->
     <label for="inv_price">Price:</label>

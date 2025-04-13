@@ -20,22 +20,24 @@ invCont.buildByClassificationId = async function (req, res, next) {
   });
 };
 
-invCont.buildByInventoryId = async function (req, res, next) {
+invCont.buildByInventoryId = async function(req, res, next) {
   const inv_id = req.params.invId;
   try {
     const vehicle = await invModel.getInventoryById(inv_id);
     const nav = await utilities.getNav();
     const vehicleDetailsHTML = utilities.buildVehicleDetailHTML(vehicle);
 
-    res.render("./inventory/detail", {
+    res.render("inventory/detail", {
       title: `${vehicle.inv_make} ${vehicle.inv_model}`,
       nav,
-      vehicleDetailsHTML,
+      vehicle,               // Pass the vehicle object
+      vehicleDetailsHTML
     });
   } catch (error) {
     next(error);
-  }
+  };
 };
+
 
 /* ***************************
  *  Build inventory management view

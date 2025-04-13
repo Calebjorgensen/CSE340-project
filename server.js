@@ -85,6 +85,11 @@ app.use("/account", require("./routes/accountRoute"));
 // Inventory routes
 app.use("/inv", inventoryRoute);
 
+
+// Review Route
+app.use("/reviews", require("./routes/reviewRoute"));
+
+
 // Index route
 app.get("/", baseController.buildHome);
 

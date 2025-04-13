@@ -1,8 +1,13 @@
+<!-- Updated snippet for your vehicle detail view -->
 <% if (title) { %>
-    <h1><%= title %></h1>
-  <% } else { 
-    res.redirect('/');
-  } %>
-  
-  <%- vehicleDetailsHTML %>
-  
+  <h1><%= title %></h1>
+<% } %>
+
+<%- vehicleDetailsHTML %>
+
+<!-- Add a link to view and add reviews for this vehicle -->
+<a href="/reviews/vehicle/<%= vehicle.inv_id %>" title="View and Add Reviews">
+  View and Add Reviews
+</a>
+
+

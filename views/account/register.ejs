@@ -3,20 +3,20 @@
 <main id="register-container">
   <h1>Register</h1>
 
-  <% if (locals.errorMessage) { %>
-    <p class="error"><%= errorMessage %></p>
-  <% } %>
-
+ <!-- register.ejs -->
+<% if (errorMessage) { %>
+  <p class="error"><%= errorMessage %></p>
+<% } %>
 
   <form action="/account/register" method="post">
     <label for="firstname">First Name:</label>
-    <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
+    <input type="text" name="account_firstname" id="accountFirstname" required value="<%= account_firstname %>">
 
     <label for="lastname">Last Name:</label>
-    <input type="text" id="lastname" name="account_lastname" required />
+    <input type="text" id="lastname" name="account_lastname" required value="<%= account_lastname %>"/>
 
     <label for="email">Email:</label>
-    <input type="email" id="email" name="account_email" required />
+    <input type="email" id="email" name="account_email" required value="<%= account_email %>"/>
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="account_password" required />

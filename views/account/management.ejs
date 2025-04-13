@@ -1,17 +1,24 @@
-<%- include('../partials/header') %>
+<!-- views/account/manage.ejs -->
+<%- include('../partials/header.ejs') %>
 
-<h1>Account Management</h1>
-<% if (flashMessage) { %>
-  <p class="flash-success"><%= flashMessage %></p>
-<% } %>
-<% if (errors.length > 0) { %>
-  <ul class="error-list">
-    <% errors.forEach(error => { %>
-      <li class="flash-error"><%= error %></li>
-    <% }) %>
-  </ul>
-<% } %>
+<main id="account-management">
+  <!-- Greet the user by first name -->
+  <h2>Welcome, <%= accountData.firstName %></h2>
 
-<p>You're logged in.</p>
+  <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+    <!-- Render Inventory Management section for employees/admins -->
+    <h3>Inventory Management</h3>
+    <p>
+      <a href="/inv/">Access Inventory Management</a>
+    </p>
+  <% } %>
 
-<%- include('../partials/footer') %>
+  <!-- Always display a link to update account information -->
+  <p>
+    <a href="/account/update/<%= accountData.account_id %>">Update Account Information</a>
+  </p>
+
+  <!-- Additional account management content can go here -->
+</main>
+
+<%- include('../partials/footer.ejs') %>

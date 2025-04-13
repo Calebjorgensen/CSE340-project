@@ -69,4 +69,25 @@ router.get("/add-inventory", async (req, res) => {
 // Route to handle the form submission for adding an inventory item
 router.post("/add-inventory", invController.addInventory);
 
+
+
+router.get("/add-inventory", utilities.checkInventoryAdmin, async (req, res) => {
+  let classifications = await invModel.getClassifications();
+  const nav = await utilities.getNav();
+  res.render("inventory/add-inventory", {
+    title: "Add Inventory",
+    classifications,
+    nav,
+    successMessage: req.flash("success"),
+    errorMessage: req.flash("error")
+  });
+});
+
+// Similarly protect POST routes for add/edit/delete operations:
+router.post("/add-inventory", utilities.checkInventoryAdmin, utilities.handleErrors(invController.addInventory));
+
+
+
+
+
 module.exports = router;

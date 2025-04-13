@@ -1,0 +1,50 @@
+<%- include('../partials/header.ejs') %>
+
+<main id="account-update">
+  <h1>Update Account Information</h1>
+
+  <!-- Display any flash messages -->
+  <% if (successMessage && successMessage.length > 0) { %>
+    <p class="success"><%= successMessage %></p>
+  <% } %>
+  <% if (errorMessage && errorMessage.length > 0) { %>
+    <p class="error"><%= errorMessage %></p>
+  <% } %>
+
+  <!-- Account Update Form -->
+  <section id="account-update-form">
+    <h2>Account Update</h2>
+    <form action="/account/update-info" method="POST">
+      <label for="account_firstname">First Name:</label>
+      <input type="text" name="account_firstname" id="account_firstname" required value="<%= accountData.firstName %>">
+
+      <label for="account_lastname">Last Name:</label>
+      <input type="text" name="account_lastname" id="account_lastname" required value="<%= accountData.lastName %>">
+
+      <label for="account_email">Email:</label>
+      <input type="email" name="account_email" id="account_email" required value="<%= accountData.email %>">
+
+      <!-- Hidden field for account_id -->
+      <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+      <button type="submit">Update Account</button>
+    </form>
+  </section>
+
+  <!-- Change Password Form -->
+  <section id="change-password-form">
+    <h2>Change Password</h2>
+    <p>Enter a new password (minimum 12 characters including uppercase, lowercase, number, and symbol). Changing your password will override your current password.</p>
+    <form action="/account/change-password" method="POST">
+      <label for="new_password">New Password:</label>
+      <input type="password" name="new_password" id="new_password" required>
+
+      <!-- Hidden field for account_id -->
+      <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+      <button type="submit">Change Password</button>
+    </form>
+  </section>
+</main>
+
+<%- include('../partials/footer.ejs') %>

@@ -168,5 +168,23 @@ Util.checkLogin = (req, res, next) => {
 
 
 
+ // utilities/index.js (add below checkJWTToken)
+Util.checkInventoryAdmin = (req, res, next) => {
+  // Assume that checkJWTToken has already populated res.locals.accountData and res.locals.loggedin
+  if (!res.locals.loggedin) {
+    req.flash("notice", "Please log in to access this resource.");
+    return res.redirect("/account/login");
+  }
+  const accountType = res.locals.accountData.account_type;
+  if (accountType === "Employee" || accountType === "Admin") {
+    return next();
+  } else {
+    req.flash("notice", "You do not have permission to access inventory administration.");
+    return res.redirect("/account/login");
+  }
+};
+
+
+
 
 module.exports = Util

@@ -1,0 +1,11 @@
+<!-- Example header.ejs snippet -->
+<div id="tools">
+    <% if (locals.loggedin) { %>
+      <span>Welcome, <%= locals.accountData.firstName %></span>
+      <a href="/account/management" title="Manage your account">My Account</a>
+      <a href="/account/logout" title="Log out">Logout</a>
+    <% } else { %>
+      <a href="/account/login" title="Click to log in">My Account</a>
+    <% } %>
+  </div>
+  
